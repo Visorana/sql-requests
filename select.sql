@@ -1,4 +1,4 @@
-SELECT title FROM album
+SELECT title, EXTRACT(YEAR FROM release_date) FROM album
 	WHERE EXTRACT(YEAR FROM release_date) = 2018;
 
 
@@ -11,13 +11,12 @@ SELECT title, length FROM track
 	
 	
 SELECT name, release_date FROM mixtape
-	WHERE EXTRACT(YEAR FROM release_date) <= 2020 AND EXTRACT(YEAR FROM release_date) >= 2018;
+	WHERE EXTRACT(YEAR FROM release_date) BETWEEN 2018 AND 2020;
 
 
 SELECT stage_name FROM artist
-	WHERE ARRAY_LENGTH(REGEXP_SPLIT_TO_ARRAY(stage_name, '\s+'), 1) = 1;
+	WHERE stage_name NOT LIKE '% %';
 	
 
 SELECT title FROM track
 	WHERE title ILIKE '%my%'
-	
